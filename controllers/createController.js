@@ -1,3 +1,5 @@
+const { createCar } = require('../services/carService.js');
+
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
@@ -6,10 +8,15 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.post('/', (req, res) => {
-	res.render('create', {
-		title: 'Submitted',
-	});
+router.post('/', async (req, res) => {
+	try {
+		const result = await createCar(req.body);
+		res.redirect('/catalog/' + result.id);
+	} catch (err) {
+		res.render('create', {
+			title: 'Request Error',
+		});
+	}
 });
 
 module.exports = router;

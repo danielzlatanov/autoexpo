@@ -6,5 +6,13 @@
 		"price": 8000,
 		"imgUrl": "jeep.webp",
 		"description": "nice car"
+	},
+	{
+		"id": "1311cc0c33a",
+		"name": "jeep wrangler",
+		"year": 2015,
+		"price": 16000,
+		"imgUrl": "jeep.webp",
+		"description": "very expensive car"
 	}
 ]
