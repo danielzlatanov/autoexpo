@@ -11,26 +11,9 @@
 				<input type='number' name='to' class='price' placeholder='max price' />
 				<input type='submit' value='search' id='searchBtn' />
 			</form>
-			<div class='item'>
-				<img src='' alt='image' />
-				<p class='name'>name 1</p>
-				<a class='btn' href='/catalog/1234'>details</a>
-			</div>
-			<div class='item'>
-				<img src='' alt='image' />
-				<p class='name'>name 1</p>
-				<a class='btn' href='/catalog/1234'>details</a>
-			</div>
-			<div class='item'>
-				<img src='' alt='image' />
-				<p class='name'>name 1</p>
-				<a class='btn' href='/catalog/1234'>details</a>
-			</div>
-			<div class='item'>
-				<img src='' alt='image' />
-				<p class='name'>name 1</p>
-				<a class='btn' href='/catalog/1234'>details</a>
-			</div>
+			{{#each cars}}
+			{{> carCard}}
+			{{/each}}
 		</main>
 
 	</body>
