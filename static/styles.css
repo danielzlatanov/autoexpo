@@ -209,21 +209,23 @@ div.form {
 	margin: auto;
 }
 
+div.errors {
+	width: 25%;
+	margin-left: auto;
+}
+
 span.error {
-	animation: fadeOut 1s forwards;
+	animation: fadeOut 2s forwards;
 	animation-delay: 2s;
-	background: #ef5542;
+	margin-top: 10px;
+	display: grid;
+	background: #e9604e;
 	color: white;
-	padding: 10px;
+	padding: 13px;
 	text-align: center;
-	text-decoration: none;
-	border-radius: 20px;
-	font-weight: normal;
-	position: relative;
+	border-radius: 6px;
 	float: right;
-	margin-top: 20px;
 	overflow: hidden;
-	display: block;
 }
 
 img#sadFaceImg {

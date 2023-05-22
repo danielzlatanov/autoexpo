@@ -4,6 +4,14 @@
 
 		<main>
 			<h1>create car listing</h1>
+			{{#if error}}
+				<div class='errors'>
+					<span class='error'>
+						{{error}}
+					</span>
+				</div>
+
+			{{/if}}
 			<div class='form'>
 				<form action='/create' method='post'>
 					<label for='name'>make/model</label>
