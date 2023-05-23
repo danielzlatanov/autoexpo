@@ -118,6 +118,15 @@ div.about {
 	background-color: #cdcdcd;
 	padding: 3em;
 	border-radius: 4px;
+	text-align: center;
+}
+
+#shareLink {
+	background-color: #003399;
+	width: 200px;
+	color: white;
+	padding: 6px;
+	border-radius: 4px;
 }
 
 div.about a {
