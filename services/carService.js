@@ -40,12 +40,12 @@ async function createCar(carData) {
 		description: carData.description,
 	};
 
-	const missingFields = Object.entries(car).filter(
-		([k, v]) => !v || (k == 'year' && v < 1950) || v > 2023 || (k == 'price' && v < 100)
+	const errorFields = Object.entries(car).filter(
+		([k, v]) => !v || (k == 'year' && (v < 1950 || v > 2023)) || (k == 'price' && v < 100)
 	);
 
-	if (missingFields.length > 0) {
-		const errors = missingFields.map(e => {
+	if (errorFields.length > 0) {
+		const errors = errorFields.map(e => {
 			if (e[0] == 'name') {
 				return `make and model are required`;
 			}

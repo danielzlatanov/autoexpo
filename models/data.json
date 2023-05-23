@@ -4,7 +4,7 @@
 		"name": "jeep",
 		"year": 2009,
 		"price": 8000,
-		"imgUrl": "jeep.webp",
+		"image": "jeep.webp",
 		"description": "nice car"
 	},
 	{
@@ -12,7 +12,15 @@
 		"name": "jeep wrangler",
 		"year": 2015,
 		"price": 16000,
-		"imgUrl": "jeep.webp",
+		"image": "jeep.webp",
 		"description": "very expensive car"
+	},
+	{
+		"id": "9d9b67869c",
+		"name": "bugatti veyron",
+		"year": 2005,
+		"price": 1100000,
+		"image": "bugatti.png",
+		"description": "cheap car"
 	}
 ]

@@ -13,6 +13,8 @@ header ul {
 }
 
 img.car {
+	width: 370px;
+	height: 208px;
 	display: block;
 	margin: 0 auto;
 	text-align: center;
@@ -121,17 +123,16 @@ div.about {
 	text-align: center;
 }
 
-#shareLink {
+.link {
 	background-color: #003399;
-	width: 200px;
 	color: white;
 	padding: 6px;
 	border-radius: 4px;
+	text-decoration: none;
 }
 
 div.about a {
 	text-decoration: none;
-	color: #0b2133;
 	font-weight: bold;
 }
 
@@ -241,6 +242,19 @@ img#sadFaceImg {
 	display: block;
 	margin: 0 auto;
 	width: 300px;
+}
+
+#welcomeImg {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	height: auto;
+}
+
+#welcome {
+	font-size: 20px;
+	text-align: center;
 }
 
 h2 {

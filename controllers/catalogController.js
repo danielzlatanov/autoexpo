@@ -5,7 +5,7 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
 	const search = req.query.search || '';
 	const minPrice = Number(req.query.from) || 1;
-	const maxPrice = Number(req.query.to) || 100000;
+	const maxPrice = Number(req.query.to) || 6000000;
 	const cars = getData(search, minPrice, maxPrice);
 
 	res.render('catalog', {
