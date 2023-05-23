@@ -10,13 +10,12 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
-		throw new Error('an error occurred while creating....')
 		const result = await createCar(req.body);
 		res.redirect('/catalog/' + result.id);
 	} catch (err) {
 		res.render('create', {
 			title: 'Request Error',
-			error: err.message,
+			errors: err.message.split('\n'),
 		});
 	}
 });
