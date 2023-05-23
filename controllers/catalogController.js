@@ -3,10 +3,17 @@ const { getData, getCarById } = require('../services/carService.js');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-	const cars = getData();
+	const search = req.query.search || '';
+	const minPrice = Number(req.query.from) || 1;
+	const maxPrice = Number(req.query.to) || 100000;
+	const cars = getData(search, minPrice, maxPrice);
+
 	res.render('catalog', {
 		title: 'Catalog Page',
 		cars,
+		search,
+		minPrice,
+		maxPrice,
 	});
 });
 

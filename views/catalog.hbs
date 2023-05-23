@@ -7,10 +7,10 @@
 
 			{{#if cars}}
 
-			<form action='' method='' id='searchForm'>
-				<input type='text' class='search' name='search' placeholder='search' />
-				<input type='number' name='from' class='price' placeholder='min price' />
-				<input type='number' name='to' class='price' placeholder='max price' />
+			<form method='get' id='searchForm'>
+				<input type='text' class='search' name='search' value='{{search}}' placeholder='search' />
+				<input type='number' name='from' class='price' value='{{minPrice}}' placeholder='min price' />
+				<input type='number' name='to' class='price' value='{{maxPrice}}' placeholder='max price' />
 				<input type='submit' value='search' id='searchBtn' />
 			</form>
 
@@ -22,8 +22,9 @@
 
 			<div class='about'>
 				<p>
-				no cars have been listed yet, be the first to <a id="shareLink" href="/create">share</a>			
+				no cars have been found, be the first to <a id="shareLink" href="/create">share</a>			
 				</p>
+				<p> <a id="shareLink" href="/catalog">back to catalog</a>	</p>
 			</div>
 
 			{{/if}}

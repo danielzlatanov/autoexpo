@@ -15,8 +15,15 @@ async function redo() {
 	});
 }
 
-function getData() {
-	return data;
+function getData(search, minPrice, maxPrice) {
+	search = search.toLowerCase();
+	return data
+		.filter(
+			x =>
+				x.name.toLowerCase().includes(search) ||
+				x.description.toLowerCase().includes(search)
+		)
+		.filter(x => x.price >= minPrice && x.price <= maxPrice);
 }
 
 function getCarById(id) {
