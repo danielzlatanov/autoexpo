@@ -1,10 +1,10 @@
 const Car = require('../models/Car.js');
 
-function getData() {
+async function getData() {
   return Car.find({}).lean();
 }
 
-function getCarById(id) {
+async function getCarById(id) {
   return Car.findById(id).lean();
 }
 

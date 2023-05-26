@@ -14,12 +14,14 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	const carId = req.params.id;
 	const car = await getCarById(carId);
+
 	if (car) {
 		return res.render('details', {
 			title: 'Car Details',
 			car,
 		});
 	}
+
 	res.render('carNotFound', {
 		title: 'Car Not Found',
 		carId,
