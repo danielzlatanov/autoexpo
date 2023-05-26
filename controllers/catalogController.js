@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 	const cars = getData(search, minPrice, maxPrice);
 
 	res.render('catalog', {
-		title: 'Catalog Page',
+		title: res.locals.title + ' Catalog',
 		cars,
 		search,
 		minPrice,
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 	const car = getCarById(carId);
 	if (car) {
 		return res.render('details', {
-			title: 'Catalog Details Page',
+			title: 'Car Details',
 			car,
 		});
 	}

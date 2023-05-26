@@ -114,7 +114,7 @@ div.details {
 	text-align: center;
 }
 
-div.about {
+div.layout {
 	display: block;
 	margin: auto;
 	background-color: #cdcdcd;
@@ -131,7 +131,7 @@ div.about {
 	text-decoration: none;
 }
 
-div.about a {
+div.layout a {
 	text-decoration: none;
 	font-weight: bold;
 }
@@ -227,7 +227,7 @@ div.errors {
 span.error {
 	animation: fadeOut 2s forwards;
 	animation-delay: 2s;
-	margin-top: 10px;
+	margin-top: 50px;
 	display: grid;
 	background: #e9604e;
 	color: white;
@@ -236,6 +236,7 @@ span.error {
 	border-radius: 6px;
 	float: right;
 	overflow: hidden;
+	width: 350px;
 }
 
 img#sadFaceImg {

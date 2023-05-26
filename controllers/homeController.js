@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-	res.render('home');
+  res.render('home');
 });
 
 router.get('/about', (req, res) => {
-	res.render('about', {
-		title: 'About Us',
-	});
+  res.render('about', {
+    title: 'About ' + res.locals.title,
+  });
 });
 
 module.exports = router;

@@ -1,0 +1,2 @@
+# ignoring catalog - handlebars partials are not supported by prettier
+views/catalog.hbs

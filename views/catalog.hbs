@@ -1,5 +1,4 @@
-<html lang='en'>
-
+<html lang="en">
 	<body>
 
 		<main>
@@ -7,11 +6,11 @@
 
 			{{#if cars}}
 
-			<form method='get' id='searchForm'>
-				<input type='text' class='search' name='search' value='{{search}}' placeholder='search' />
-				<input type='number' name='from' class='price' value='{{minPrice}}' placeholder='min price' />
-				<input type='number' name='to' class='price' value='{{maxPrice}}' placeholder='max price' />
-				<input type='submit' value='search' id='searchBtn' />
+			<form method="get" id="searchForm">
+				<input type="text" class="search" name="search" value="{{search}}" placeholder="search" />
+				<input type="number" name="from" class="price" value="{{minPrice}}" placeholder="min price" />
+				<input type="number" name="to" class="price" value="{{maxPrice}}" placeholder="max price" />
+				<input type="submit" value="search" id="searchBtn" />
 			</form>
 
 			{{#each cars}}
@@ -20,7 +19,7 @@
 
 			{{else}}
 
-			<div class='about'>
+			<div class="layout">
 				<p>
 				no cars have been found, be the first to <a class="link" href="/create">share</a>			
 				</p>
@@ -31,5 +30,4 @@
 		</main>
 
 	</body>
-
 </html>
