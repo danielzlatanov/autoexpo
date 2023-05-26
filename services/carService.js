@@ -1,38 +1,15 @@
-const fs = require('fs');
+const Car = require('../models/Car.js');
 
-const filepath = './models/data.json';
-
-const data = JSON.parse(fs.readFileSync(filepath));
-
-async function redo() {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filepath, JSON.stringify(data, null, 2), (err) => {
-      if (err == null) {
-        return resolve();
-      }
-      reject(err);
-    });
-  });
-}
-
-function getData(search, minPrice, maxPrice) {
-  search = search.toLowerCase();
-  return data
-    .filter(
-      (x) =>
-        x.name.toLowerCase().includes(search) ||
-        x.description.toLowerCase().includes(search)
-    )
-    .filter((x) => x.price >= minPrice && x.price <= maxPrice);
+function getData() {
+  return Car.find({}).lean();
 }
 
 function getCarById(id) {
-  return data.find((c) => c.id === id);
+  return Car.findById(id).lean();
 }
 
 async function createCar(carData) {
   const car = {
-    id: uniqueID(),
     name: carData.name,
     year: Number(carData.year),
     price: Number(carData.price),
@@ -63,17 +40,12 @@ async function createCar(carData) {
     throw new Error(errors.join('\n'));
   }
 
-  data.push(car);
-  await redo();
-  return car;
-}
-
-function uniqueID() {
-  return Math.floor(Math.random() * Date.now()).toString(16);
+  const result = await Car.create(car);
+  return result;
 }
 
 module.exports = {
   getData,
   getCarById,
-  createCar,
+  createCar
 };
