@@ -1,0 +1,40 @@
+<html lang="en">
+  <body>
+
+    <main>
+      <h1>car name: {{car.name}}</h1>
+      <div class="details">
+        <img src="/static/images/{{car.image}}" class="car" alt="image" />
+        <p>extras:</p>
+
+        {{#if extras}}
+          <form
+            class="extraForm"
+            action="/edit/{{car._id}}/car-extras"
+            method="post"
+          >
+            <ul class="extras">
+              {{#each extras}}
+                <li><label><input type="checkbox" name="{{_id}}" {{#if checked}} checked {{/if}} />{{title}}
+                    <img
+                      class="extra-icon"
+                      src="/static/images/{{icon}}"
+                      alt="--icon"
+                    /></label></li>
+              {{/each}}
+            </ul>
+            <button class="btn">save</button>
+          </form>
+
+        {{else}}
+          <p>there are no additional extras yet,
+            <a href="/create/car-extras">add one first</a>
+          </p>
+        {{/if}}
+
+        <a class="btn" href="/catalog/{{car._id}}">back</a>
+      </div>
+    </main>
+
+  </body>
+</html>

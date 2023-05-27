@@ -8,7 +8,8 @@ module.exports = (app) => {
   app.use(homeController);
   app.use('/catalog', catalogController);
   app.use('/create/car', createController);
-  app.use('/create/car-extra', extraController);
+  app.use('/create/car-extras', extraController);
+  app.use('/edit', extraController);
 
   app.all('*', defaultController);
 };
