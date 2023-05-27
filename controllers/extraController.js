@@ -21,10 +21,14 @@ router.post('/', async (req, res) => {
     }
 
     await createExtra(req.body.title, icon);
-    res.redirect('/create/car-extras');
+    res.render('createExtras', {
+      title: 'Success',
+      successMsg: 'saved',
+    });
   } catch (err) {
-    res.render('createExtra', {
+    res.render('createExtras', {
       title: 'An Error Occurred',
+      titleErr: err.message.split('title: ')[1],
     });
   }
 });

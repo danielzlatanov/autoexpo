@@ -213,18 +213,18 @@ input[type='submit']:hover {
 }
 
 .extras {
-	margin-top: 30px;
+  margin-top: 30px;
   list-style-type: none;
   padding: 0 220px;
-	text-align: left;
-	background-color: rgb(215, 215, 215);
+  text-align: left;
+  background-color: rgb(215, 215, 215);
 }
 
 .extra-icon {
   width: 26px;
   height: 26px;
   position: absolute;
-	right: 39.5%;
+  right: 39.5%;
 }
 
 ul.extras li input[type='checkbox'] {
@@ -258,6 +258,10 @@ span.error {
   float: right;
   overflow: hidden;
   width: 350px;
+}
+
+span.successMsg {
+  background: #4ec5e9;
 }
 
 img#sadFaceImg {

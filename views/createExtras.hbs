@@ -4,6 +4,24 @@
     <main>
       <h1>add car extras</h1>
 
+      {{#if titleErr}}
+
+        <div class="errors">
+          <span class="error">
+            {{titleErr}}
+          </span>
+        </div>
+
+      {{/if}}
+
+      {{#if successMsg}}
+
+          <span class="error successMsg">
+            {{successMsg}}
+          </span>
+
+      {{/if}}
+
       <div class="form">
         <form action="/create/car-extras" method="post">
           <label for="title">title</label>

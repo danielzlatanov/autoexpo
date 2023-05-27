@@ -1,2 +1,4 @@
 # ignoring catalog - handlebars partials are not supported by prettier
 views/catalog.hbs
+# ignoring editCarExtras - if statement for dynamic attribute not supported
+views/editCarExtras.hbs
