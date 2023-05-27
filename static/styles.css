@@ -213,9 +213,11 @@ input[type='submit']:hover {
 }
 
 .extras {
+	margin-top: 30px;
   list-style-type: none;
   padding: 0 220px;
 	text-align: left;
+	background-color: rgb(215, 215, 215);
 }
 
 .extra-icon {

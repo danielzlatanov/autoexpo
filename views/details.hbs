@@ -9,6 +9,30 @@
           <p>year: {{year}}</p>
           <p>price: {{price}}</p>
           <p>description: {{description}}</p>
+
+          <ul class="extras">
+            <p>extras:</p>
+            {{#if extras}}
+              {{#each extras}}
+                <li><label><input
+                      type="checkbox"
+                      name="{{_id}}"
+                      checked
+                      disabled
+                    />{{title}}
+                    <img
+                      class="extra-icon"
+                      src="/static/images/{{icon}}"
+                      alt="--icon"
+                    /></label></li>
+              {{/each}}
+
+            {{else}}
+              <p>not specified yet, choose
+                <a href="/edit/{{_id}}/car-extras">here</a>
+              </p>
+            {{/if}}
+          </ul>
           <a class="btn" href="/catalog">back</a>
           <a class="btn" href="/edit/{{_id}}/car-extras">edit car extras</a>
         </div>

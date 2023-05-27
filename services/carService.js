@@ -5,7 +5,7 @@ async function getData() {
 }
 
 async function getCarById(id) {
-  return Car.findById(id).lean();
+  return Car.findById(id).populate('extras').lean();
 }
 
 async function createCar(carData) {

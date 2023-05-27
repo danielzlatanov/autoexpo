@@ -34,7 +34,7 @@ router.get('/:carId/car-extras', async (req, res) => {
   const car = await getCarById(carId);
   const extras = await getExtras();
   extras.forEach((e) => {
-    if (car.extras.some((id) => id.toString() == e._id.toString())) {
+    if (car.extras.some((x) => x._id.toString() == e._id.toString())) {
       e.checked = true;
     }
   });
