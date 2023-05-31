@@ -144,6 +144,7 @@ form:not(.extraForm) label {
 
 input[type='text'],
 input[type='number'],
+input[type='password'],
 select,
 textarea {
   width: 100%;
