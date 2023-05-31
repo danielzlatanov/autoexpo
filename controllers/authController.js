@@ -8,13 +8,25 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const result = await login(
-    req.body.username.trim(),
-    req.body.password.trim()
-  );
-
-  attachJwt(req, res, result);
-  res.redirect('/');
+  try {
+    if (!req.body.username || !req.body.password) {
+      throw new Error('all fields are required');
+    }
+    
+    const result = await login(
+      req.body.username.trim(),
+      req.body.password.trim()
+    );
+  
+    attachJwt(req, res, result);
+    res.redirect('/');
+  } catch (err) {
+    res.render('login', {
+      title: 'Login Error',
+      errors: err.message.split('\n'),
+    });
+  }
+  
 });
 
 router.get('/register', (req, res) => {
@@ -45,7 +57,7 @@ router.post('/register', async (req, res) => {
     res.redirect('/');
   } catch (err) {
     res.render('register', {
-      title: 'Error registering',
+      title: 'Register Error',
       errors: err.message.split('\n'),
     });
   }

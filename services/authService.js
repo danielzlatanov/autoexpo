@@ -22,17 +22,22 @@ async function register(username, password) {
 }
 
 async function login(username, password) {
-  return new Promise((resolve, reject) => {
-    if (username.toLowerCase() === 'daniel' && password === '123') {
-      resolve({
-        _id: '02902ao0dsasox',
-        username: 'daniel',
-        roles: ['user'],
-      });
-    } else {
-      reject(new Error('invalid username or password'));
-    }
+  const user = await User.findOne({
+    username: { $regex: new RegExp(username), $options: 'i' },
   });
+  if (!user) {
+    throw new Error('incorrect username or password');
+  }
+
+  const match = await bcrypt.compare(password, user.hashedPassword);
+  if (!match) {
+    throw new Error('incorrect username or password');
+  }
+
+  return {
+    username: user.username,
+    roles: user.roles,
+  };
 }
 
 module.exports = {
