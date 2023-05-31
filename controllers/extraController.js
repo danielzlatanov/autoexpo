@@ -2,7 +2,7 @@ const { getCarById } = require('../services/carService.js');
 const {
   createExtra,
   getExtras,
-  addExtrasToCar,
+  modifyCarExtras,
 } = require('../services/extraService.js');
 
 const router = require('express').Router();
@@ -30,6 +30,7 @@ router.post('/', async (req, res) => {
       title: 'An Error Occurred',
       titleErr: err.message.split('title: ')[1],
     });
+    console.error(err.message);
   }
 });
 
@@ -51,10 +52,13 @@ router.get('/:carId/car-extras', async (req, res) => {
 });
 
 router.post('/:carId/car-extras', async (req, res) => {
-  const carId = req.params.carId;
+  try {
+    const carId = req.params.carId;
 
-  await addExtrasToCar(carId, Object.keys(req.body));
-
-  res.redirect('/edit/' + carId + '/car-extras');
+    await modifyCarExtras(carId, Object.keys(req.body));
+    res.redirect('/edit/' + carId + '/car-extras');
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 module.exports = router;

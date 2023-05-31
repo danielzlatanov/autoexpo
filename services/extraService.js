@@ -12,7 +12,7 @@ async function createExtra(title, icon) {
   });
 }
 
-async function addExtrasToCar(carId, extrasIds) {
+async function modifyCarExtras(carId, extrasIds) {
   const car = await Car.findById(carId).populate('extras');
   const extras = await Extra.find({ _id: { $in: extrasIds } });
 
@@ -50,5 +50,5 @@ async function addExtrasToCar(carId, extrasIds) {
 module.exports = {
   getExtras,
   createExtra,
-  addExtrasToCar,
+  modifyCarExtras,
 };
