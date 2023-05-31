@@ -2,7 +2,7 @@
   <body>
 
     <main>
-      <h1>login page</h1>
+      <h1>register page</h1>
 
       {{#if errors}}
         {{#each errors}}
@@ -17,14 +17,16 @@
       {{/if}}
 
       <div class="form">
-        <p class="name">no account? sign up <a href="/auth/register">here</a> </p>
-        <form action="/auth/login" method="post">
+        <p class="name">already registered? sign in <a href="/auth/login">here</a> </p>
+        <form action="/auth/register" method="post">
           <label for="username">username</label>
           <input type="text" id="username" name="username" />
           <label for="password">password</label>
           <input type="password" id="password" name="password" />
+          <label for="password">repeat</label>
+          <input type="password" id="repeat" name="repeat" />
 
-          <input type="submit" value="sign in" />
+          <input type="submit" value="sign up" />
         </form>
       </div>
 
