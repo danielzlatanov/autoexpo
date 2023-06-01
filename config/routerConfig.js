@@ -4,7 +4,8 @@ const catalogController = require('../controllers/catalogController.js');
 const createController = require('../controllers/createController.js');
 const extraController = require('../controllers/extraController.js');
 const authController = require('../controllers/authController.js');
-const { isUser, isGuest } = require('../middlewares/guards.js');
+const carController = require('../controllers/carController.js');
+const { isUser } = require('../middlewares/guards.js');
 
 module.exports = (app) => {
   app.use(homeController);
@@ -13,6 +14,7 @@ module.exports = (app) => {
   app.use('/create/car-extras', isUser(), extraController);
   app.use('/edit', isUser(), extraController);
   app.use('/auth', authController);
+  app.use('/car', carController)
 
   app.all('*', defaultController);
 };

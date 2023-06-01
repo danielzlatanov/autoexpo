@@ -216,7 +216,7 @@ input[type='submit']:hover {
 .extras {
   margin-top: 30px;
   list-style-type: none;
-  padding: 0 220px;
+  padding: 20px 220px;
   text-align: left;
   background-color: rgb(215, 215, 215);
 }
@@ -301,6 +301,14 @@ footer {
 
 #helloUser {
   color: #003399;
+}
+
+#deleteBtn {
+  background: rgb(142, 10, 10);
+}
+
+#deleteBtn:hover {
+  background:rgb(170, 64, 14);
 }
 
 @-webkit-keyframes fadeOut {

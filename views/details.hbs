@@ -33,10 +33,11 @@
               </p>
             {{/if}}
           </ul>
-          <a class="btn" href="/catalog">back</a>
 
           {{#if isOwner}}
-          <a class="btn" href="/edit/{{_id}}/car-extras">edit car extras</a>
+            <a class="btn" href="/car/edit/{{_id}}">edit car</a>
+            <a class="btn" href="/edit/{{_id}}/car-extras">edit extras</a>
+            <a id="deleteBtn" class="btn" href="/car/delete/{{_id}}">delete</a>
           {{/if}}
         </div>
       {{/with}}

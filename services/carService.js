@@ -45,8 +45,22 @@ async function createCar(carData, ownerId) {
   return result;
 }
 
+async function editCar(carData, carId) {
+  const car = await Car.findById(carId);
+
+  car.name = carData.name;
+  car.year = Number(carData.year);
+  car.price = Number(carData.price);
+  car.image = carData.imageUrl;
+  car.description = carData.description;
+
+  await car.save();
+  return car;
+}
+
 module.exports = {
   getData,
   getCarById,
   createCar,
+  editCar,
 };
