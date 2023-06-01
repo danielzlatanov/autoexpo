@@ -11,10 +11,12 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 router.post('/edit/:id', async (req, res) => {
+  const carId = req.params.id;
   try {
-    const result = await editCar(req.body, req.params.id);
+    const result = await editCar(req.body, carId);
     res.redirect('/catalog/' + result._id);
   } catch (err) {
+    req.body._id = carId;
     res.render('edit', {
       title: 'Request Error',
       errors: err.message.split('\n'),
