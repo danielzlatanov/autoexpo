@@ -4,6 +4,10 @@ const router = require('express').Router();
 
 router.get('/edit/:id', async (req, res) => {
   const car = await getCarById(req.params.id);
+  if (!req.user || car.owner != req.user._id) {
+    return res.redirect('/auth/login');
+  }
+
   res.render('edit', {
     title: 'Edit Car',
     car,
@@ -12,6 +16,11 @@ router.get('/edit/:id', async (req, res) => {
 
 router.post('/edit/:id', async (req, res) => {
   const carId = req.params.id;
+  const car = await getCarById(carId);
+  if (!req.user || car.owner != req.user._id) {
+    return res.redirect('/auth/login');
+  }
+
   try {
     const result = await editCar(req.body, carId);
     res.redirect('/catalog/' + result._id);
