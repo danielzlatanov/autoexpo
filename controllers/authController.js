@@ -63,12 +63,9 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  console.log('logged out');
   res.clearCookie('jwt');
   return res.redirect('/');
 });
-
-//todo logout doesn't work
 
 function attachJwt(req, res, data) {
   const token = req.signJwt(data);

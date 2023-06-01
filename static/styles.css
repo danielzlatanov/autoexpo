@@ -299,6 +299,10 @@ footer {
   width: 100%;
 }
 
+#helloUser {
+  color: #003399;
+}
+
 @-webkit-keyframes fadeOut {
   from {
     opacity: 1;
