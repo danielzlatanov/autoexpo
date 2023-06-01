@@ -308,7 +308,7 @@ footer {
 }
 
 #deleteBtn:hover {
-  background:rgb(170, 64, 14);
+  background: rgb(170, 64, 14);
 }
 
 @-webkit-keyframes fadeOut {

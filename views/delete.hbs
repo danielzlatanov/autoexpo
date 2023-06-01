@@ -1,0 +1,69 @@
+<html lang="en">
+  <body>
+
+    <main>
+      <h1>delete car</h1>
+
+      {{#if errors}}
+        {{#each errors}}
+
+          <div class="errors">
+            <span class="error">
+              {{this}}
+            </span>
+          </div>
+
+        {{/each}}
+      {{/if}}
+
+      {{#with car}}
+        <div class="form">
+          <form action="/car/delete/{{_id}}" method="post">
+            <label for="name">make/model</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="{{name}}"
+              disabled
+            />
+            <label for="year">year</label>
+            <input
+              type="number"
+              id="year"
+              name="year"
+              value="{{year}}"
+              disabled
+            />
+            <label for="price">price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value="{{price}}"
+              disabled
+            />
+            <label for="image">image url</label>
+            <input
+              type="text"
+              id="image"
+              name="imageUrl"
+              value="{{image}}"
+              disabled
+            />
+            <label for="description">description</label>
+            <textarea
+              id="description"
+              name="description"
+              disabled
+            >{{description}}</textarea>
+
+            <input type="submit" id="deleteBtn" value="confirm delete" />
+          </form>
+        </div>
+      {{/with}}
+
+    </main>
+
+  </body>
+</html>

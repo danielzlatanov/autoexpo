@@ -81,9 +81,14 @@ async function editCar(carData, carId) {
   return car;
 }
 
+async function deleteCar(carId) {
+  return Car.findByIdAndRemove(carId);
+}
+
 module.exports = {
   getData,
   getCarById,
   createCar,
   editCar,
+  deleteCar,
 };
