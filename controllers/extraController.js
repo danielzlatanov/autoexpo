@@ -1,3 +1,4 @@
+const { hasRole } = require('../middlewares/guards.js');
 const { getCarById } = require('../services/carService.js');
 const {
   createExtra,
@@ -7,13 +8,13 @@ const {
 
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
+router.get('/', hasRole('admin'), (req, res) => {
   res.render('createExtras', {
     title: 'Add Car Extras',
   });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', hasRole('admin'), async (req, res) => {
   try {
     let icon = req.body.icon;
     if (!icon) {
@@ -37,6 +38,11 @@ router.post('/', async (req, res) => {
 router.get('/:carId/car-extras', async (req, res) => {
   const carId = req.params.carId;
   const car = await getCarById(carId);
+
+  if (!req.user || car.owner != req.user._id) {
+    return res.redirect('/auth/login');
+  }
+
   const extras = await getExtras();
   extras.forEach((e) => {
     if (car.extras.some((x) => x._id.toString() == e._id.toString())) {
@@ -54,6 +60,11 @@ router.get('/:carId/car-extras', async (req, res) => {
 router.post('/:carId/car-extras', async (req, res) => {
   try {
     const carId = req.params.carId;
+    const car = await getCarById(carId);
+
+    if (!req.user || car.owner != req.user._id) {
+      return res.redirect('/auth/login');
+    }
 
     await modifyCarExtras(carId, Object.keys(req.body));
     res.redirect('/edit/' + carId + '/car-extras');

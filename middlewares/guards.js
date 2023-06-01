@@ -21,7 +21,7 @@ function isGuest() {
 function hasRole(role) {
   return (req, res, next) => {
     if (req.user == undefined || !req.user.roles.includes(role)) {
-      return res.redirect('/login');
+      return res.redirect('/auth/login');
     }
     next();
   };
