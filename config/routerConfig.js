@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.use('/create/car', isUser(), createController);
   app.use('/create/car-extras', isUser(), extraController);
   app.use('/edit', isUser(), extraController);
-  app.use('/auth', isGuest(), authController);
+  app.use('/auth', authController);
 
   app.all('*', defaultController);
 };

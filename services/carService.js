@@ -8,13 +8,14 @@ async function getCarById(id) {
   return Car.findById(id).populate('extras').lean();
 }
 
-async function createCar(carData) {
+async function createCar(carData, ownerId) {
   const car = {
     name: carData.name,
     year: Number(carData.year),
     price: Number(carData.price),
     image: carData.imageUrl,
     description: carData.description,
+    owner: ownerId,
   };
 
   const errorFields = Object.entries(car).filter(
@@ -47,5 +48,5 @@ async function createCar(carData) {
 module.exports = {
   getData,
   getCarById,
-  createCar
+  createCar,
 };

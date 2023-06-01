@@ -7,6 +7,7 @@ const carSchema = new Schema({
   image: { type: String, required: true },
   description: { type: String, required: true },
   extras: [{ type: Types.ObjectId, ref: 'Extra' }],
+  owner: { type: Types.ObjectId, ref: 'User', required: true },
 });
 
 const Car = model('Car', carSchema);

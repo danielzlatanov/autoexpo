@@ -12,12 +12,12 @@ router.post('/login', async (req, res) => {
     if (!req.body.username || !req.body.password) {
       throw new Error('all fields are required');
     }
-    
+
     const result = await login(
       req.body.username.trim(),
       req.body.password.trim()
     );
-  
+
     attachJwt(req, res, result);
     res.redirect('/');
   } catch (err) {
@@ -26,7 +26,6 @@ router.post('/login', async (req, res) => {
       errors: err.message.split('\n'),
     });
   }
-  
 });
 
 router.get('/register', (req, res) => {
@@ -62,6 +61,14 @@ router.post('/register', async (req, res) => {
     });
   }
 });
+
+router.get('/logout', (req, res) => {
+  console.log('logged out');
+  res.clearCookie('jwt');
+  return res.redirect('/');
+});
+
+//todo logout doesn't work
 
 function attachJwt(req, res, data) {
   const token = req.signJwt(data);
