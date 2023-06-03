@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const router = require('express').Router();
 const { login, register } = require('../services/authService.js');
+const { parseError } = require('../utils/errorParser.js');
 
 router.get('/login', (req, res) => {
   res.render('login', {
@@ -47,36 +48,38 @@ router.post(
     .trim()
     .notEmpty()
     .withMessage('username is required')
+    .bail()
     .isAlphanumeric()
     .withMessage('username may contain only alphanumeric characters'),
   body('password')
     .trim()
-    .notEmpty()
-    .withMessage('password is required')
     .isLength({ min: 8 })
     .withMessage('password must be at least 8 characters long'),
   body('repeat')
     .trim()
     .custom(async (value, { req }) => {
-      if (value != req.body.repeat) {
+      if (value != req.body.password) {
         throw new Error('passwords do not match');
       }
     }),
   async (req, res) => {
+
     try {
+      console.log(req.body);
       const { errors } = validationResult(req);
       if (errors.length > 0) {
         throw errors;
       }
 
-      const result = await register(username, password);
+      const result = await register(req.body.username, req.body.password);
 
       attachJwt(req, res, result);
       res.redirect('/');
-    } catch (errors) {
+    } catch (error) {
       res.render('register', {
         title: 'Register Error',
-        errors,
+        body: { username: req.body.username },
+        errors: parseError(error),
       });
     }
   }

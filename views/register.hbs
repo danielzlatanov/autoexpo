@@ -5,11 +5,11 @@
       <h1>register page</h1>
 
       {{#if errors}}
-        {{#each errors}}
+        {{#each errors.messages}}
 
           <div class="errors">
             <span class="error">
-              {{msg}}
+              {{this}}
             </span>
           </div>
 
@@ -20,11 +20,11 @@
         <p class="name">already registered? sign in <a href="/auth/login">here</a> </p>
         <form action="/auth/register" method="post">
           <label for="username">username</label>
-          <input type="text" id="username" name="username" />
+           <input {{#if errors.fields.username}} class="error-border" {{/if}} type="text" id="username" name="username" value="{{body.username}}"/>
           <label for="password">password</label>
-          <input type="password" id="password" name="password" />
+          <input {{#if errors.fields.password}} class="error-border" {{/if}} type="password" id="password" name="password" />
           <label for="password">repeat</label>
-          <input type="password" id="repeat" name="repeat" />
+          <input {{#if errors.fields.repeat}} class="error-border" {{/if}} type="password" id="repeat" name="repeat" />
 
           <input type="submit" value="sign up" />
         </form>
