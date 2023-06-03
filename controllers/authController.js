@@ -1,3 +1,4 @@
+const { body, validationResult } = require('express-validator');
 const router = require('express').Router();
 const { login, register } = require('../services/authService.js');
 
@@ -7,26 +8,32 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.post('/login', async (req, res) => {
-  try {
-    if (!req.body.username || !req.body.password) {
-      throw new Error('all fields are required');
+router.post(
+  '/login',
+  body('username').trim().notEmpty().withMessage('username is required'),
+  body('password').trim().notEmpty().withMessage('password is required'),
+  async (req, res) => {
+    try {
+      const { errors } = validationResult(req);
+      if (errors.length > 0) {
+        throw errors;
+      }
+
+      const result = await login(
+        req.body.username.trim(),
+        req.body.password.trim()
+      );
+
+      attachJwt(req, res, result);
+      res.redirect('/');
+    } catch (errors) {
+      res.render('login', {
+        title: 'Login Error',
+        errors,
+      });
     }
-
-    const result = await login(
-      req.body.username.trim(),
-      req.body.password.trim()
-    );
-
-    attachJwt(req, res, result);
-    res.redirect('/');
-  } catch (err) {
-    res.render('login', {
-      title: 'Login Error',
-      errors: err.message.split('\n'),
-    });
   }
-});
+);
 
 router.get('/register', (req, res) => {
   res.render('register', {
@@ -34,33 +41,46 @@ router.get('/register', (req, res) => {
   });
 });
 
-router.post('/register', async (req, res) => {
-  try {
-    const username = req.body.username.trim();
-    const password = req.body.password.trim();
-    const repass = req.body.repeat.trim();
+router.post(
+  '/register',
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('username is required')
+    .isAlphanumeric()
+    .withMessage('username may contain only alphanumeric characters'),
+  body('password')
+    .trim()
+    .notEmpty()
+    .withMessage('password is required')
+    .isLength({ min: 8 })
+    .withMessage('password must be at least 8 characters long'),
+  body('repeat')
+    .trim()
+    .custom(async (value, { req }) => {
+      if (value != req.body.repeat) {
+        throw new Error('passwords do not match');
+      }
+    }),
+  async (req, res) => {
+    try {
+      const { errors } = validationResult(req);
+      if (errors.length > 0) {
+        throw errors;
+      }
 
-    if (!username || !password) {
-      throw new Error('all fields are required');
-    }
-    if (password != repass) {
-      throw new Error("passwords don't match");
-    }
-    if (username.length < 3) {
-      throw new Error('username must be at least 3 characters long');
-    }
+      const result = await register(username, password);
 
-    const result = await register(username, password);
-
-    attachJwt(req, res, result);
-    res.redirect('/');
-  } catch (err) {
-    res.render('register', {
-      title: 'Register Error',
-      errors: err.message.split('\n'),
-    });
+      attachJwt(req, res, result);
+      res.redirect('/');
+    } catch (errors) {
+      res.render('register', {
+        title: 'Register Error',
+        errors,
+      });
+    }
   }
-});
+);
 
 router.get('/logout', (req, res) => {
   res.clearCookie('jwt');
