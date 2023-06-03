@@ -5,11 +5,11 @@
       <h1>login page</h1>
 
       {{#if errors}}
-        {{#each errors}}
+        {{#each errors.messages}}
 
           <div class="errors">
             <span class="error">
-              {{msg}}
+              {{this}}
             </span>
           </div>
 
@@ -17,10 +17,17 @@
       {{/if}}
 
       <div class="form">
-        <p class="name">no account? sign up <a href="/auth/register">here</a> </p>
+        <p class="name">no account? sign up
+          <a href="/auth/register">here</a>
+        </p>
         <form action="/auth/login" method="post">
           <label for="username">username</label>
-          <input type="text" id="username" name="username" />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value="{{body.username}}"
+          />
           <label for="password">password</label>
           <input type="password" id="password" name="password" />
 

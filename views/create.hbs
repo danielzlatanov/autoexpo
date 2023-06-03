@@ -5,7 +5,7 @@
       <h1>create car listing</h1>
 
       {{#if errors}}
-        {{#each errors}}
+        {{#each errors.messages}}
 
           <div class="errors">
             <span class="error">
@@ -19,15 +19,15 @@
       <div class="form">
         <form action="/create/car" method="post">
           <label for="name">make/model</label>
-          <input type="text" id="name" name="name" />
+          <input{{#if errors.fields.name}} class="error-border" {{/if}} type="text" id="name" name="name" value="{{body.name}}" />
           <label for="year">year</label>
-          <input type="number" id="year" name="year" />
+          <input{{#if errors.fields.year}} class="error-border" {{/if}} type="number" id="year" name="year" value="{{body.year}}"/>
           <label for="price">price</label>
-          <input type="number" id="price" name="price" />
+          <input{{#if errors.fields.price}} class="error-border" {{/if}} type="number" id="price" name="price" value="{{body.price}}"/>
           <label for="image">image url</label>
-          <input type="text" id="image" name="imageUrl" />
+          <input{{#if errors.fields.imageUrl}} class="error-border" {{/if}} type="text" id="image" name="imageUrl" value="{{body.imageUrl}}"/>
           <label for="description">description</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea{{#if errors.fields.description}} class="error-border" {{/if}} id="description" name="description">{{body.description}}</textarea>
 
           <input type="submit" value="publish" />
         </form>

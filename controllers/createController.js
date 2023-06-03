@@ -1,4 +1,5 @@
 const { createCar } = require('../services/carService.js');
+const { parseError } = require('../utils/errorParser.js');
 
 const router = require('express').Router();
 
@@ -15,7 +16,8 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.render('create', {
       title: 'Request Error',
-      errors: err.message.split('\n'),
+      body: req.body,
+      errors: parseError(err),
     });
   }
 });

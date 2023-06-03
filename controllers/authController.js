@@ -11,26 +11,17 @@ router.get('/login', (req, res) => {
 
 router.post(
   '/login',
-  body('username').trim().notEmpty().withMessage('username is required'),
-  body('password').trim().notEmpty().withMessage('password is required'),
+  body(['username', 'password']).trim(),
   async (req, res) => {
     try {
-      const { errors } = validationResult(req);
-      if (errors.length > 0) {
-        throw errors;
-      }
-
-      const result = await login(
-        req.body.username.trim(),
-        req.body.password.trim()
-      );
-
+      const result = await login(req.body.username, req.body.password);
       attachJwt(req, res, result);
       res.redirect('/');
-    } catch (errors) {
+    } catch (error) {
       res.render('login', {
         title: 'Login Error',
-        errors,
+        body: { username: req.body.username },
+        errors: parseError(error),
       });
     }
   }
@@ -63,9 +54,7 @@ router.post(
       }
     }),
   async (req, res) => {
-
     try {
-      console.log(req.body);
       const { errors } = validationResult(req);
       if (errors.length > 0) {
         throw errors;
