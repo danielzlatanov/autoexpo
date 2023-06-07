@@ -1,49 +1,32 @@
-<html lang="en">
-  <body>
+<h1>modify car</h1>
 
-    <main>
-      <h1>modify car</h1>
+{{#if errors}}
+  {{#each errors}}
 
-      {{#if errors}}
-        {{#each errors}}
+    <div class="errors">
+      <span class="error">
+        {{this}}
+      </span>
+    </div>
 
-          <div class="errors">
-            <span class="error">
-              {{this}}
-            </span>
-          </div>
+  {{/each}}
+{{/if}}
 
-        {{/each}}
-      {{/if}}
+{{#with car}}
+  <div class="form">
+    <form action="/car/edit/{{_id}}" method="post">
+      <label for="name">make/model</label>
+      <input type="text" id="name" name="name" value="{{name}}" />
+      <label for="year">year</label>
+      <input type="number" id="year" name="year" value="{{year}}" />
+      <label for="price">price</label>
+      <input type="number" id="price" name="price" value="{{price}}" />
+      <label for="image">image url</label>
+      <input type="text" id="image" name="imageUrl" value="{{image}}" />
+      <label for="description">description</label>
+      <textarea id="description" name="description">{{description}}</textarea>
 
-      {{#with car}}
-        <div class="form">
-          <form action="/car/edit/{{_id}}" method="post">
-            <label for="name">make/model</label>
-            <input type="text" id="name" name="name" value="{{name}}" />
-            <label for="year">year</label>
-            <input type="number" id="year" name="year" value="{{year}}" />
-            <label for="price">price</label>
-            <input type="number" id="price" name="price" value="{{price}}" />
-            <label for="image">image url</label>
-            <input
-              type="text"
-              id="image"
-              name="imageUrl"
-              value="{{image}}"
-            />
-            <label for="description">description</label>
-            <textarea
-              id="description"
-              name="description"
-            >{{description}}</textarea>
-
-            <input type="submit" value="update" />
-          </form>
-        </div>
-      {{/with}}
-
-    </main>
-
-  </body>
-</html>
+      <input type="submit" value="update" />
+    </form>
+  </div>
+{{/with}}

@@ -1,41 +1,32 @@
-<html lang="en">
-  <body>
+<h1>login page</h1>
 
-    <main>
-      <h1>login page</h1>
+{{#if errors}}
+  {{#each errors.messages}}
 
-      {{#if errors}}
-        {{#each errors.messages}}
+    <div class="errors">
+      <span class="error">
+        {{this}}
+      </span>
+    </div>
 
-          <div class="errors">
-            <span class="error">
-              {{this}}
-            </span>
-          </div>
+  {{/each}}
+{{/if}}
 
-        {{/each}}
-      {{/if}}
+<div class="form">
+  <p class="name">no account? sign up
+    <a href="/auth/register">here</a>
+  </p>
+  <form action="/auth/login" method="post">
+    <label for="username">username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      value="{{body.username}}"
+    />
+    <label for="password">password</label>
+    <input type="password" id="password" name="password" />
 
-      <div class="form">
-        <p class="name">no account? sign up
-          <a href="/auth/register">here</a>
-        </p>
-        <form action="/auth/login" method="post">
-          <label for="username">username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value="{{body.username}}"
-          />
-          <label for="password">password</label>
-          <input type="password" id="password" name="password" />
-
-          <input type="submit" value="sign in" />
-        </form>
-      </div>
-
-    </main>
-
-  </body>
-</html>
+    <input type="submit" value="sign in" />
+  </form>
+</div>

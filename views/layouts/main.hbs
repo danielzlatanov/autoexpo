@@ -27,24 +27,21 @@
           <li><a href="/catalog">catalog</a></li>
 
           {{#if username}}
-
             <li><a href="/create/car">add car</a></li>
             <li><a href="/create/car-extras">add extras</a></li>
             <li><a href="/auth/logout">logout</a></li>
             <span id="helloUser">hello, {{username}}</span>
-
           {{else}}
             <li><a href="/auth/login">login</a></li>
             <li><a href="/auth/register">register</a></li>
-
           {{/if}}
         </span>
       </ul>
     </header>
 
-    <div class="container">
+    <main>
       {{{body}}}
-    </div>
+    </main>
 
     <footer>&copy; 2023</footer>
   </body>
