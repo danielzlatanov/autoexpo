@@ -33,7 +33,7 @@ async function createCar(carData, ownerId) {
 
   const errorFields = Object.entries(car).filter(
     ([k, v]) =>
-      !v || (k == 'year' && (v < 1950 || v > 2023)) || (k == 'price' && v < 100)
+      !v || (k == 'year' && (v < 1950 || v > 2023)) || (k == 'price' && (v < 100 || v > 999999999))
   );
 
   if (errorFields.length > 0) {
@@ -45,7 +45,7 @@ async function createCar(carData, ownerId) {
         return `${e[0]} must be in the range 1950-2023`;
       }
       if (e[0] == 'price') {
-        return `${e[0]} must be greater than $100`;
+        return `${e[0]} must be greater than $100 and less than $999999999`;
       }
 
       return `${e[0]} is a required field`;
@@ -61,7 +61,7 @@ async function createCar(carData, ownerId) {
 async function editCar(carData, carId) {
   const errorFields = Object.entries(carData).filter(
     ([k, v]) =>
-      !v || (k == 'year' && (v < 1950 || v > 2023)) || (k == 'price' && v < 100)
+      !v || (k == 'year' && (v < 1950 || v > 2023)) || (k == 'price' && (v < 100 || v > 999999999))
   );
 
   if (errorFields.length > 0) {
@@ -73,7 +73,7 @@ async function editCar(carData, carId) {
         return `${e[0]} must be in the range 1950-2023`;
       }
       if (e[0] == 'price') {
-        return `${e[0]} must be greater than $100`;
+        return `${e[0]} must be greater than $100 and less than $999999999`;
       }
 
       return `${e[0]} is a required field`;

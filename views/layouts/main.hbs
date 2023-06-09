@@ -39,11 +39,9 @@
     </header>
 
     <main>
-
       <h1>{{title}}</h1>
 
       {{#if errors}}
-
         <div class="errors">
           {{#each errors.messages}}
             <span class="error">
@@ -51,11 +49,9 @@
             </span>
           {{/each}}
         </div>
-
       {{/if}}
 
       {{{body}}}
-
     </main>
 
     <footer>&copy; AutoExpo 2023</footer>
