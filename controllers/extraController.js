@@ -23,12 +23,12 @@ router.post('/', hasRole('admin'), async (req, res) => {
 
     await createExtra(req.body.title, icon);
     res.render('createExtras', {
-      title: 'Success',
+      title: 'Add Car Extras',
       successMsg: 'saved',
     });
   } catch (err) {
     res.render('createExtras', {
-      title: 'An Error Occurred',
+      title: 'Add Car Extras',
       titleErr: err.message.split('title: ')[1],
     });
     console.error(err.message);

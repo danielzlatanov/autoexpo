@@ -19,7 +19,7 @@ router.post(
       res.redirect('/');
     } catch (error) {
       res.render('login', {
-        title: 'Login Error',
+        title: 'Sign In Error',
         body: { username: req.body.username },
         errors: parseError(error),
       });
@@ -66,7 +66,7 @@ router.post(
       res.redirect('/');
     } catch (error) {
       res.render('register', {
-        title: 'Register Error',
+        title: 'Sign Up Error',
         body: { username: req.body.username },
         errors: parseError(error),
       });

@@ -27,7 +27,7 @@ router.post('/edit/:id', async (req, res) => {
   } catch (err) {
     req.body._id = carId;
     res.render('edit', {
-      title: 'Request Error',
+      title: 'Edit Car Error',
       errors: err.message.split('\n'),
       car: req.body,
     });
@@ -59,7 +59,7 @@ router.post('/delete/:id', async (req, res) => {
   } catch (err) {
     req.body._id = carId;
     res.render('delete', {
-      title: 'Request Error',
+      title: 'Delete Car Error',
       errors: err.message.split('\n'),
       car: req.body,
     });
