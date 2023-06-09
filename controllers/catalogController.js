@@ -16,23 +16,23 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const carId = req.params.id;
-  const car = await getCarById(carId);
 
-  if (req.user && req.user._id == car.owner) {
-    car.isOwner = true;
-  }
+  try {
+    const car = await getCarById(carId);
+    if (req.user && req.user._id == car.owner) {
+      car.isOwner = true;
+    }
 
-  if (car) {
-    return res.render('details', {
+    res.render('details', {
       title: 'Car Details',
       car,
     });
+  } catch (err) {
+    res.render('carNotFound', {
+      title: 'Car Not Found',
+      carId,
+    });
   }
-
-  res.render('carNotFound', {
-    title: 'Car Not Found',
-    carId,
-  });
 });
 
 module.exports = router;
