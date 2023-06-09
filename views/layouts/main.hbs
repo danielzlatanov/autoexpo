@@ -22,8 +22,7 @@
               alt="logo"
             /></a></li>
         <span id="linksBox">
-          {{! <li><a href="/">home</a></li> }}
-          {{! <li><a href="/about">about</a></li> }}
+          <li><a href="/about">about</a></li> 
           <li><a href="/catalog">catalog</a></li>
 
           {{#if username}}
@@ -41,6 +40,8 @@
 
     <main>
 
+      <h1>{{title}}</h1>
+
       {{#if errors}}
 
         <div class="errors">
@@ -52,7 +53,7 @@
         </div>
 
       {{/if}}
-      
+
       {{{body}}}
 
     </main>
