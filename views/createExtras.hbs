@@ -9,9 +9,9 @@
 <div class="form">
   <form action="/create/car-extras" method="post">
     <label for="title">title</label>
-    <input type="text" id="title" name="title" />
+    <input type="text" id="title" name="title" value="{{body.title}}"/>
     <label for="icon">icon url</label>
-    <input type="text" id="icon" name="icon" />
+    <input type="text" id="icon" name="icon" value="{{body.icon}}"/>
 
     <input type="submit" value="save" />
   </form>

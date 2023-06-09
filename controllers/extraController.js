@@ -31,6 +31,7 @@ router.post('/', hasRole('admin'), async (req, res) => {
     res.render('createExtras', {
       title: 'Add Car Extras Error',
       errors: parseError(err),
+      body: req.body
     });
   }
 });
