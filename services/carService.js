@@ -1,12 +1,20 @@
 const Car = require('../models/Car.js');
 
-async function getData(search) {
+async function getData(search, minPrice, maxPrice) {
   const query = {};
-	if (search) {
-		query.name = new RegExp(search, 'i');
-	}
+  if (search) {
+    query.name = new RegExp(search, 'i');
+  }
 
-	return Car.find(query).lean();
+  if (minPrice) {
+    query.price = { $gte: minPrice, $lte: 999999999 };
+  }
+
+  if (maxPrice) {
+    query.price = { $gte: 100, $lte: maxPrice };
+  }
+
+  return Car.find(query).lean();
 }
 
 async function getCarById(id) {

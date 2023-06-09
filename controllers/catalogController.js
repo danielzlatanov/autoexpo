@@ -3,12 +3,14 @@ const { getData, getCarById } = require('../services/carService.js');
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
-  const cars = await getData(req.query.search);
+  const cars = await getData(req.query.search, req.query.from, req.query.to);
 
   res.render('catalog', {
     title: res.locals.title + ' Catalog',
     cars,
     search: req.query.search,
+    minPrice: req.query.from,
+    maxPrice: req.query.to,
   });
 });
 
