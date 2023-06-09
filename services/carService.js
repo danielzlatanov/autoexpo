@@ -1,7 +1,12 @@
 const Car = require('../models/Car.js');
 
-async function getData() {
-  return Car.find({}).lean();
+async function getData(search) {
+  const query = {};
+	if (search) {
+		query.name = new RegExp(search, 'i');
+	}
+
+	return Car.find(query).lean();
 }
 
 async function getCarById(id) {

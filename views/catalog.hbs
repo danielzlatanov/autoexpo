@@ -1,12 +1,11 @@
 			{{#if cars}}
 
-			{{!--! search functionality not implemented yet --}}
-			{{!-- <form method="get" id="searchForm">
+			<form method="get" id="searchForm">
 				<input type="text" class="search" name="search" value="{{search}}" placeholder="search" />
 				<input type="number" name="from" class="price" value="{{minPrice}}" placeholder="min price" />
 				<input type="number" name="to" class="price" value="{{maxPrice}}" placeholder="max price" />
 				<input type="submit" value="search" id="searchBtn" />
-			</form> --}}
+			</form>
 
 			{{#each cars}}
 			{{> carCard}}
