@@ -40,7 +40,21 @@
     </header>
 
     <main>
+
+      {{#if errors}}
+
+        <div class="errors">
+          {{#each errors.messages}}
+            <span class="error">
+              {{this}}
+            </span>
+          {{/each}}
+        </div>
+
+      {{/if}}
+      
       {{{body}}}
+
     </main>
 
     <footer>&copy; 2023</footer>

@@ -1,17 +1,5 @@
     <h1>register page</h1>
 
-      {{#if errors}}
-        {{#each errors.messages}}
-
-          <div class="errors">
-            <span class="error">
-              {{this}}
-            </span>
-          </div>
-
-        {{/each}}
-      {{/if}}
-
       <div class="form">
         <p class="name">already registered? sign in <a href="/auth/login">here</a> </p>
         <form action="/auth/register" method="post">

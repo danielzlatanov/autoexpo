@@ -1,17 +1,5 @@
 <h1>login page</h1>
 
-{{#if errors}}
-  {{#each errors.messages}}
-
-    <div class="errors">
-      <span class="error">
-        {{this}}
-      </span>
-    </div>
-
-  {{/each}}
-{{/if}}
-
 <div class="form">
   <p class="name">no account? sign up
     <a href="/auth/register">here</a>

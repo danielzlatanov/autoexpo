@@ -248,7 +248,7 @@ div.errors {
 span.error {
   animation: fadeOut 2s forwards;
   animation-delay: 2s;
-  margin-top: 50px;
+  margin-top: 10px;
   display: grid;
   background: #e9604e;
   color: white;

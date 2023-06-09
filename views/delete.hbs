@@ -1,17 +1,5 @@
 <h1>delete car</h1>
 
-{{#if errors}}
-  {{#each errors}}
-
-    <div class="errors">
-      <span class="error">
-        {{this}}
-      </span>
-    </div>
-
-  {{/each}}
-{{/if}}
-
 {{#with car}}
   <div class="form">
     <form action="/car/delete/{{_id}}" method="post">
