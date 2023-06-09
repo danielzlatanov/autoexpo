@@ -1,4 +1,5 @@
 const { getCarById, editCar, deleteCar } = require('../services/carService.js');
+const { parseError } = require('../utils/errorParser.js');
 
 const router = require('express').Router();
 
@@ -28,7 +29,7 @@ router.post('/edit/:id', async (req, res) => {
     req.body._id = carId;
     res.render('edit', {
       title: 'Modify Car Error',
-      errors: err.message.split('\n'),
+      errors: parseError(err),
       car: req.body,
     });
   }
@@ -60,7 +61,7 @@ router.post('/delete/:id', async (req, res) => {
     req.body._id = carId;
     res.render('delete', {
       title: 'Delete Car Error',
-      errors: err.message.split('\n'),
+      errors: parseError(err),
       car: req.body,
     });
   }

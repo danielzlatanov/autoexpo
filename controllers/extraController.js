@@ -30,7 +30,7 @@ router.post('/', hasRole('admin'), async (req, res) => {
   } catch (err) {
     res.render('createExtras', {
       title: 'Add Car Extras Error',
-      titleErr: err.message.split('title: ')[1],
+      errors: parseError(err),
     });
   }
 });
