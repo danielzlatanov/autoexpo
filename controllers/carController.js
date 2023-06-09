@@ -9,7 +9,7 @@ router.get('/edit/:id', async (req, res) => {
   }
 
   res.render('edit', {
-    title: 'Edit Car',
+    title: 'Modify Car',
     car,
   });
 });
@@ -27,7 +27,7 @@ router.post('/edit/:id', async (req, res) => {
   } catch (err) {
     req.body._id = carId;
     res.render('edit', {
-      title: 'Edit Car Error',
+      title: 'Modify Car Error',
       errors: err.message.split('\n'),
       car: req.body,
     });

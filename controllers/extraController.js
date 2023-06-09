@@ -5,6 +5,7 @@ const {
   getExtras,
   modifyCarExtras,
 } = require('../services/extraService.js');
+const { parseError } = require('../utils/errorParser.js');
 
 const router = require('express').Router();
 
@@ -28,10 +29,9 @@ router.post('/', hasRole('admin'), async (req, res) => {
     });
   } catch (err) {
     res.render('createExtras', {
-      title: 'Add Car Extras',
+      title: 'Add Car Extras Error',
       titleErr: err.message.split('title: ')[1],
     });
-    console.error(err.message);
   }
 });
 
@@ -69,7 +69,10 @@ router.post('/:carId/car-extras', async (req, res) => {
     await modifyCarExtras(carId, Object.keys(req.body));
     res.redirect('/edit/' + carId + '/car-extras');
   } catch (err) {
-    console.error(err.message);
+    res.render('editCarExtras', {
+      title: 'Update Car Extras Error',
+      errors: parseError(err),
+    });
   }
 });
 module.exports = router;
